@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -9,9 +9,17 @@ def index(request):
     return HttpResponse('Index Page Loaded')
 
 
-def january(request):
-    return HttpResponse('January Challenge')
+# def january(request):
+#     return HttpResponse('January Challenge')
 
 
-def february(request):
-    return HttpResponse('February Challenge')
+# def february(request):
+#     return HttpResponse('February Challenge')
+
+def month_function(request, month):
+    month_text = None
+    if(month == 'january'):
+        month_text = "Welcome to january"
+    else:
+        return HttpResponseNotFound('Month is not recognized!')
+    return HttpResponse(month_text)
